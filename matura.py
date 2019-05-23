@@ -145,7 +145,7 @@ def interface():
         try:
             gender = sys.argv[5]
         except:
-            gender = None
+            gender = "brak"
 
         if province not in results.province:
             print("Nie ma takiego województwa jak: %s" % province)
@@ -177,7 +177,7 @@ def interface():
         try:
             gender = sys.argv[3]
         except:
-            gender = None
+            gender = "brak"
 
         if province not in results.province:
             print("Nie ma takiego województwa jak: %s" % province)
@@ -198,7 +198,7 @@ def interface():
         try:
             gender = sys.argv[3]
         except:
-            gender = None
+            gender = "brak"
 
         if year not in results.province["pomorskie"].years:
             if int(year) >= 2020:
@@ -214,7 +214,7 @@ def interface():
         try:
             gender = sys.argv[1]
         except:
-            gender = None
+            gender = "brak"
 
         if not(gender == "kobiety" or gender == "mężczyźni" or gender == "brak"):
             print("Nie ma takiej płci jak: %s" % gender)
