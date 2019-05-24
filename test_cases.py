@@ -101,7 +101,7 @@ class TestClass(object):
         assert matura.pass_rate(year,gender) == result
 
     def test_12(self):
-        province1 = "pomorskie"
+        province1 = "dolnośląskie"
         province2 = "kujawsko-pomorskie"
         gender = "brak"
         result = {

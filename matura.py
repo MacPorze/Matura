@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import csv
 import sys
 
@@ -73,14 +74,16 @@ def rate_calculate(province, year, gender):
 
 def average(province, first, last, gender):
     sum = 0
-    if gender == "brak":
-        for i in range(last-first+1):
-            sum = sum + results.province[province].years[str(first+i)].gender["kobiety"].exam["przystąpiło"] + results.province[province].years[str(first+i)].gender["mężczyźni"].exam["przystąpiło"]
-    else:
-        for i in range(last-first+1):
-            sum = sum + results.province[province].years[str(first+i)].gender[gender].exam["przystąpiło"]
-    ave = sum/(last-first+1)
-    return round(ave)
+    if (check_province(province) and check_year(first) and check_year(last) and check_gender(gender)):
+        if gender == "brak":
+            for i in range(last-first+1):
+                sum = sum + results.province[province].years[str(first+i)].gender["kobiety"].exam["przystąpiło"] + results.province[province].years[str(first+i)].gender["mężczyźni"].exam["przystąpiło"]
+        else:
+            for i in range(last-first+1):
+                sum = sum + results.province[province].years[str(first+i)].gender[gender].exam["przystąpiło"]
+        ave = sum/(last-first+1)
+        return round(ave)
+    else: return None
 
 def percentage(province, gender):
     score = {}
@@ -126,6 +129,27 @@ def compare(province1, province2, gender):
 
     return result
 
+def check_province(province):
+    if province not in results.province:
+        print("Nie ma takiego województwa jak: %s" % province)
+        return False
+    else: return True
+
+def check_year(year):
+    if year not in results.province["polska"].years:
+        if year >= 2020:
+            print("Przepraszamy ale nie posiadamy danych z przyszłości :(")
+        else:
+            print("Nie posiadamy danych z roku: %s" % year)
+        return False
+    else: return True
+
+def check_gender(gender):
+    if not (gender == "kobiety" or gender == "mężczyźni" or gender == "brak"):
+        print("Nie ma takiej płci jak: %s" % gender)
+        return False
+    else: return True
+
 def interface():
     try:
         argument = sys.argv[1]
@@ -147,25 +171,13 @@ def interface():
         except:
             gender = "brak"
 
-        if province not in results.province:
-            print("Nie ma takiego województwa jak: %s" % province)
-        elif first not in results.province[province].years:
-            if first >= 2020:
-                print("Przepraszamy ale nie posiadamy danych z przyszłości :(")
-            else:
-                print("Nie posiadamy danych z roku: %s" % first)
-        elif last not in results.province[province].years:
-            if last >= 2020:
-                print("Przepraszamy ale nie posiadamy danych z przyszłości :(")
-            else:
-                print("Nie posiadamy danych z roku: %s" % last)
-        elif not(gender == "kobiety" or gender == "mężczyźni" or gender == "brak"):
-            print("Nie ma takiej płci jak: %s" % gender)
-        else:
+        try:
             if first <= last:
                 print("%s(%s-%s) - %s" % (province, first, last, average(province, int(first), int(last), gender)))
             else:
                 print("%s(%s-%s) - %s" % (province, last, first, average(province, int(last), int(first), gender)))
+        except:
+            "Błąd danych!"
 
     elif argument == "percentage":
         try:
