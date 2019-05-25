@@ -1,32 +1,34 @@
 import pytest
-import matura as matura
+from matura import Tasks
 
 class TestClass(object):
+    global tasks
+    tasks = Tasks()
     def test_1(self):
         province = "pomorskie"
-        first = 2013
-        last = 2016
-        assert matura.average(province,first,last,"brak") == 16103
+        first = "2013"
+        last = "2016"
+        assert tasks.average(province,first,last,"brak") == 16103
 
     def test_2(self):
         province = "warmińsko-mazurskie"
-        first = 2010
-        last = 2018
-        assert matura.average(province,first,last,"brak") == 11047
+        first = "2010"
+        last = "2018"
+        assert tasks.average(province,first,last,"brak") == 11047
 
     def test_3(self):
         province = "wielkopolskie"
-        first = 2012
-        last = 2014
+        first = "2012"
+        last = "2014"
         gender = "kobiety"
-        assert matura.average(province,first,last,gender) == 15801
+        assert tasks.average(province,first,last,gender) == 15801
 
     def test_4(self):
         province = "mazowieckie"
-        first = 2016
-        last = 2018
+        first = "2016"
+        last = "2018"
         gender = "mężczyźni"
-        assert matura.average(province,first,last,gender) == 17238
+        assert tasks.average(province,first,last,gender) == 17238
 
     def test_5(self):
         province = "pomorskie"
@@ -42,7 +44,7 @@ class TestClass(object):
             "2017": 78,
             "2018": 77
         }
-        assert matura.percentage(province,gender) == result
+        assert tasks.percentage(province,gender) == result
 
     def test_6(self):
         province = "zachodniopomorskie"
@@ -58,7 +60,7 @@ class TestClass(object):
             "2017": 76,
             "2018": 78
         }
-        assert matura.percentage(province,gender) == result
+        assert tasks.percentage(province,gender) == result
 
     def test_7(self):
         province = "podkarpackie"
@@ -74,31 +76,31 @@ class TestClass(object):
             "2017": 78,
             "2018": 81
         }
-        assert matura.percentage(province,gender) == result
+        assert tasks.percentage(province,gender) == result
 
     def test_8(self):
         year = "2010"
         gender = "brak"
         result = "kujawsko-pomorskie"
-        assert matura.pass_rate(year,gender) == result
+        assert tasks.pass_rate(year,gender) == result
 
     def test_9(self):
         year = "2014"
         gender = "brak"
         result = "lubuskie"
-        assert matura.pass_rate(year,gender) == result
+        assert tasks.pass_rate(year,gender) == result
 
     def test_10(self):
         year = "2016"
         gender = "kobiety"
         result = "małopolskie"
-        assert matura.pass_rate(year,gender) == result
+        assert tasks.pass_rate(year,gender) == result
 
     def test_11(self):
         year = "2013"
         gender = "mężczyźni"
         result = "lubuskie"
-        assert matura.pass_rate(year,gender) == result
+        assert tasks.pass_rate(year,gender) == result
 
     def test_12(self):
         province1 = "dolnośląskie"
@@ -115,7 +117,7 @@ class TestClass(object):
             "2017": "kujawsko-pomorskie",
             "2018": "kujawsko-pomorskie"
         }
-        assert matura.compare(province1,province2,gender) == result
+        assert tasks.compare(province1,province2,gender) == result
 
     def test_13(self):
         province1 = "świętokrzyskie"
@@ -132,4 +134,10 @@ class TestClass(object):
             "2017": "świętokrzyskie",
             "2018": "świętokrzyskie"
         }
-        assert matura.compare(province1,province2,gender) == result
+        assert tasks.compare(province1,province2,gender) == result
+
+    def test_14(self):
+        province = "pomor567"
+        first = "2013"
+        last = "2016"
+        assert tasks.average(province,first,last,"brak") == False
