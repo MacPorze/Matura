@@ -1,9 +1,12 @@
 import pytest
-from matura import Tasks
+from matura import Tasks, Validate
 
 class TestClass(object):
     global tasks
     tasks = Tasks()
+    global validate
+    validate = Validate()
+
     def test_1(self):
         province = "pomorskie"
         first = "2013"
@@ -141,3 +144,80 @@ class TestClass(object):
         first = "2013"
         last = "2016"
         assert tasks.average(province,first,last,"brak") == False
+
+    def test_15(self):
+        gender = "brak"
+        assert tasks.regression(gender) == [('dolnośląskie', 2010, '2011'),
+                                     ('dolnośląskie', 2013, '2014'),
+                                     ('dolnośląskie', 2016, '2017'),
+                                     ('kujawsko-pomorskie', 2010, '2011'),
+                                     ('kujawsko-pomorskie', 2013, '2014'),
+                                     ('kujawsko-pomorskie', 2016, '2017'),
+                                     ('lubelskie', 2010, '2011'),
+                                     ('lubelskie', 2013, '2014'),
+                                     ('lubelskie', 2016, '2017'),
+                                     ('lubuskie', 2010, '2011'),
+                                     ('lubuskie', 2013, '2014'),
+                                     ('lubuskie', 2016, '2017'),
+                                     ('lubuskie', 2017, '2018'),
+                                     ('łódzkie', 2010, '2011'),
+                                     ('łódzkie', 2013, '2014'),
+                                     ('łódzkie', 2016, '2017'),
+                                     ('łódzkie', 2017, '2018'),
+                                     ('małopolskie', 2010, '2011'),
+                                     ('małopolskie', 2013, '2014'),
+                                     ('mazowieckie', 2010, '2011'),
+                                     ('mazowieckie', 2013, '2014'),
+                                     ('mazowieckie', 2016, '2017'),
+                                     ('opolskie', 2010, '2011'),
+                                     ('opolskie', 2013, '2014'),
+                                     ('opolskie', 2016, '2017'),
+                                     ('podkarpackie', 2010, '2011'),
+                                     ('podkarpackie', 2013, '2014'),
+                                     ('podkarpackie', 2016, '2017'),
+                                     ('podlaskie', 2010, '2011'),
+                                     ('podlaskie', 2013, '2014'),
+                                     ('podlaskie', 2016, '2017'),
+                                     ('pomorskie', 2010, '2011'),
+                                     ('pomorskie', 2013, '2014'),
+                                     ('pomorskie', 2016, '2017'),
+                                     ('pomorskie', 2017, '2018'),
+                                     ('śląskie', 2010, '2011'),
+                                     ('śląskie', 2013, '2014'),
+                                     ('śląskie', 2016, '2017'),
+                                     ('świętokrzyskie', 2010, '2011'),
+                                     ('świętokrzyskie', 2013, '2014'),
+                                     ('świętokrzyskie', 2016, '2017'),
+                                     ('warmińsko-mazurskie', 2010, '2011'),
+                                     ('warmińsko-mazurskie', 2013, '2014'),
+                                     ('warmińsko-mazurskie', 2016, '2017'),
+                                     ('wielkopolskie', 2010, '2011'),
+                                     ('wielkopolskie', 2013, '2014'),
+                                     ('wielkopolskie', 2016, '2017'),
+                                     ('zachodniopomorskie', 2010, '2011'),
+                                     ('zachodniopomorskie', 2013, '2014'),
+                                     ('zachodniopomorskie', 2016, '2017')]
+
+    def test_16(self):
+        province = "pomorskie"
+        assert validate.check_province(province) == True
+
+    def test_17(self):
+        province = "pomors"
+        assert validate.check_province(province) == False
+
+    def test_18(self):
+        year = "2010"
+        assert validate.check_year(year) == True
+
+    def test_19(self):
+        year = "2045"
+        assert validate.check_year(year) == False
+
+    def test_20(self):
+        gender = "kobiety"
+        assert validate.check_gender(gender) == True
+
+    def test_21(self):
+        gender = "meżczcz"
+        assert validate.check_gender(gender) == False
