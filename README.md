@@ -1,5 +1,5 @@
-#Matura
-##Aplikacja wyznaczaj¹ca statystyki egzaminu maturalnego
+# Matura
+## Aplikacja wyznaczaj¹ca statystyki egzaminu maturalnego
 English version below
 
 Jak uruchomiæ aplikacjê?
@@ -13,7 +13,7 @@ Jak uruchomiæ aplikacjê?
 * Uruchom aplikacjê za pomoc¹ terminala:
 'python matura.py [komenda] [argumenty]'
 
-#####Dostêpne komendy:
+##### Dostêpne komendy:
 * Wyznacz œredni¹ iloœæ osób bior¹cych udzia³ w egzaminie w danym województwie w danych latach:
 'average [województwo] [rok pocz¹tkowy] [rok koñcowy]'
 * Wyznacz procentow¹ zdawalnoœæ w danym województwie we wszystkich latach:
@@ -52,8 +52,8 @@ Dostêpne p³cie:
 * Kobiety
 * Mê¿czyŸni
 ----------------------------------------------------------------------------------------------
-#Matura
-##Application wich give exams statistics
+# Matura
+## Application wich give exams statistics
 
 How to run application?
 * Download application from github:
@@ -66,7 +66,7 @@ How to run application?
 * Run application using terminal
 'python matura.py [command] [arguments]'
 
-#####Aviable commands:
+##### Aviable commands:
 * calculate average number of people tooked part in exam
 'average [province] [start year] [end year]'
 * calculate percentage pass rate in every year in given province
